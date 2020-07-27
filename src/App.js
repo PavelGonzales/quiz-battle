@@ -22,7 +22,7 @@ function App() {
       if (answer === currentQuestion.correct_answer) {
         setRightQuestions(rightQuestions + 1);
       } else {
-        setWrongQuestions(wrongQuestions + 1);
+        setWrongQuestions(wrongQuestions + Math.round(Math.random()));
       }
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
