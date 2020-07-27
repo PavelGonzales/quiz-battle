@@ -1,0 +1,15 @@
+.timerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.timerContainer__icon {
+  margin-right: 5px;
+}
+
+.timerContainer__seconds {
+  width: 26px;
+}
