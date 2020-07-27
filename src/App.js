@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Progress } from 'antd';
+import { Progress, Space } from 'antd';
 // Styles
 import './App.css';
 // Mocks
@@ -34,8 +34,13 @@ function App() {
         status="exception"
         className="progress"
       />
-      <PlayerStat rightQuestions={rightQuestions} />
-
+      <Space
+        style={{ justifyContent: 'space-around' }}
+      >
+        <PlayerStat rightQuestions={rightQuestions} />
+        <PlayerStat rival rightQuestions={rightQuestions} />
+      </Space>
+      
       <QustionWithAnswers
         question={currentQuestion.question}
         incorrectAnswers={currentQuestion.incorrect_answers}

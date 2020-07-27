@@ -5,7 +5,12 @@ import './styles.css';
 const avatarSrc = `https://api.adorable.io/avatars/200/${Math.random()}`;
 
 function PlayerStat(props) {
-  const { rightQuestions = 0 } = props;
+  const { rightQuestions = 0, rival } = props;
+  const classesRightQuestions = ['rightQustions']
+
+  if (rival) {
+    classesRightQuestions.push('rightQustions_rival');
+  }
   
   return (
     <div className="userContainer">
@@ -13,7 +18,7 @@ function PlayerStat(props) {
         src={avatarSrc}
         size={100}
       />
-      <div className="rightQustions">{ rightQuestions }</div>
+      <div className={classesRightQuestions.join(' ')}>{ rightQuestions }</div>
     </div>
   );
 }

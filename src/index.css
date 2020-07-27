@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --accent-color: #52c41a;
+  --error-color: #ff4d4f;
 }
 
 code {
