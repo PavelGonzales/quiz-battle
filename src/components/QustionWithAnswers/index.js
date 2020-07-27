@@ -35,7 +35,7 @@ function QustionWithAnswers(props) {
             type="primary" 
             shape="round"
             size="large"
-            onClick={props.onAnswerClick}
+            onClick={() => { props.onAnswerClick(answer) }}
           >
             <div dangerouslySetInnerHTML={{ __html: answer }} />
           </Button>)

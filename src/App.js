@@ -11,8 +11,18 @@ import PlayerStat from './components/PlayerStat';
 
 console.log('mock', mock)
 function App() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [rightQuestions, setRightQuestions] = useState(0);
+  const currentQuestion = mock.results[currentQuestionIndex] || {};
+
+  const onAnswerClick = () => {
+    return (answer) => {
+      if (answer === currentQuestion.correct_answer) {
+        setRightQuestions(rightQuestions + 1) 
+      }
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  }
 
   return (
     <div className="App">
@@ -26,18 +36,12 @@ function App() {
       />
       <PlayerStat rightQuestions={rightQuestions} />
 
-      {
-        currentQuestion < 10 ? (
-          <>
-            <QustionWithAnswers
-              question={mock.results[currentQuestion].question}
-              incorrectAnswers={mock.results[currentQuestion].incorrect_answers}
-              correctAnswer={mock.results[currentQuestion].correct_answer}
-              onAnswerClick={() => {setCurrentQuestion(currentQuestion + 1); setRightQuestions(currentQuestion + 1) }}
-            />
-          </>
-        ) : 'The End'
-      }
+      <QustionWithAnswers
+        question={currentQuestion.question}
+        incorrectAnswers={currentQuestion.incorrect_answers}
+        correctAnswer={currentQuestion.correct_answer}
+        onAnswerClick={onAnswerClick(currentQuestionIndex)}
+      />
     </div>
   );
 }
