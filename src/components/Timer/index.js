@@ -11,7 +11,7 @@ function Timer() {
     if (timer > 0) {
       interval = setInterval(() => {
         setTimer(seconds => seconds - 1);
-      }, 300);
+      }, 1000);
     } else {
       clearInterval(interval);
     }
