@@ -1,0 +1,40 @@
+.slider {
+  display: flex;
+}
+
+.slider__inner {
+  display: flex;
+  animation: move 2s ease-in-out infinite;
+}
+
+.slider__item {
+  flex-shrink: 0;
+  margin-right: 35px;
+}
+
+.vs {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.find-rival {
+  font-weight: 600;
+}
+
+.find-wrap {
+  margin: auto 0;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(30%);
+  }
+
+  50% {
+    transform: translateX(-26%);
+  }
+
+  100% {
+    transform: translateX(30%);
+  }
+}

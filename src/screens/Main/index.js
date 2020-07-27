@@ -9,7 +9,7 @@ import Timer from './../../components/Timer';
 import QustionWithAnswers from './../../components/QustionWithAnswers';
 import PlayerStat from './../../components/PlayerStat';
 
-function Main() {
+function MainScreen() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [rightQuestions, setRightQuestions] = useState(0);
   const [wrongQuestions, setWrongQuestions] = useState(0);
@@ -73,4 +73,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainScreen;

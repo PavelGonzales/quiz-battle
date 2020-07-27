@@ -3,11 +3,16 @@ import React from 'react';
 import './App.css';
 // Screens
 import MainScreen from './screens/Main';
+import FindScreen from './screens/Find';
 
 function App() {
+  const isFinding = false;
+
   return (
     <div className="App">
-      <MainScreen />
+      {
+        isFinding ? <FindScreen /> : <MainScreen />
+      }
     </div>
   );
 }
