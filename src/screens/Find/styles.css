@@ -1,40 +1,28 @@
-.slider {
-  display: flex;
+.find-screen {
+  margin: auto 0;
 }
 
-.slider__inner {
+.find-screen__slider {
   display: flex;
   animation: move 2s ease-in-out infinite;
 }
 
-.slider__item {
+.find-screen__slider-item {
   flex-shrink: 0;
   margin-right: 35px;
 }
 
-.vs {
+.find-screen__vs {
   font-weight: 700;
   font-size: 30px;
 }
 
-.find-rival {
-  font-weight: 600;
-}
-
-.find-wrap {
-  margin: auto 0;
-}
-
 @keyframes move {
   0% {
-    transform: translateX(30%);
-  }
-
-  50% {
-    transform: translateX(-26%);
+    transform: translateX(40%);
   }
 
   100% {
-    transform: translateX(30%);
+    transform: translateX(-10%);
   }
 }
