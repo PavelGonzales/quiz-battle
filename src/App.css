@@ -5,8 +5,11 @@
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
-
   background: #2980B9;
   background: linear-gradient(to top, #FFFFFF 33%, #6DD5FA 75%, #2980B9 100%);
+}
 
+.test-nav a {
+  color: #fff;
+  margin-right: 15px;
 }
