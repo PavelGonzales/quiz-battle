@@ -1,0 +1,28 @@
+.find-screen {
+  margin: auto 0;
+}
+
+.find-screen__slider {
+  display: flex;
+  animation: move 2s ease-in-out infinite;
+}
+
+.find-screen__slider-item {
+  flex-shrink: 0;
+  margin-right: 35px;
+}
+
+.find-screen__vs {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(40%);
+  }
+
+  100% {
+    transform: translateX(-10%);
+  }
+}

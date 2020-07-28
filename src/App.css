@@ -1,14 +1,12 @@
-@import '~antd/dist/antd.css';
-
 .App {
   display: flex;
   flex-direction: column;
   padding: 25px 16px;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-}
+  overflow: hidden;
 
-.progress {
-  width: 75%;
-  margin: 0.25em auto 1em
+  background: #2980B9;
+  background: linear-gradient(to top, #FFFFFF 33%, #6DD5FA 75%, #2980B9 100%);
+
 }
