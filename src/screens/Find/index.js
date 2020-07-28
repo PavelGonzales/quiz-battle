@@ -29,7 +29,7 @@ function FindScreen() {
 
       <div className="find-screen__slider">
         {
-          rivalAvatars.map(src => <Avatar className="find-screen__slider-item" src={src} size={50} key={src} />)
+          rivalAvatars.map((src, index) => <Avatar className="find-screen__slider-item" src={src} size={50} key={`${src}-${index}`} />)
         }
       </div>
 
