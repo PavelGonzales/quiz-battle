@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Avatar, Space } from 'antd';
+import { Link, Redirect } from "react-router-dom";
+import { AVATAR_URL_100, AVATAR_URL_200 } from './../../utils/constants';
 // Styles
 import './styles.css';
 
 function FindScreen() {
-  const avatarSrc = `https://api.adorable.io/avatars/200/${Math.random()}`;
+  const [isRedirect, setIsRedirect] = useState(false);
+  const avatarSrc = `${AVATAR_URL_200}${Math.random()}`;
   const rivalAvatars = [];
 
   for (let i = 0; i < 10; i++) {
-    rivalAvatars.push(`https://api.adorable.io/avatars/100/${i}`);
+    rivalAvatars.push(`${AVATAR_URL_100}${i}`);
   }
 
   rivalAvatars.push(...rivalAvatars);
+
+  setTimeout(() => {
+    setIsRedirect(true);
+  }, 3000);
+
+  if (isRedirect) {
+    return <Redirect to='/battle' />;
+  }
 
   return (
     <Space
@@ -36,7 +47,7 @@ function FindScreen() {
       Find rival...
 
       <Button size="large">
-        Cancel
+        <Link to="/">Cancel</Link>
       </Button>
     </Space>
   );

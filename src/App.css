@@ -5,8 +5,10 @@
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
+  max-width: 640px;
+  margin: auto;
+}
 
-  background: #2980B9;
-  background: linear-gradient(to top, #FFFFFF 33%, #6DD5FA 75%, #2980B9 100%);
-
+.test-nav a {
+  margin-right: 15px;
 }

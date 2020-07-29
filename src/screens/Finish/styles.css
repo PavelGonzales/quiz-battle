@@ -1,0 +1,30 @@
+.finish-screen {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.finish-screen__title {
+  margin-bottom: 35px!important;
+}
+
+.finish-screen__button {
+  margin-top: 35px;
+}
+
+.finish-screen__player-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.player-info__avatar {
+  margin-right: 10px;
+}
+
+.player-info__stats {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  font-size: 18px;
+}
