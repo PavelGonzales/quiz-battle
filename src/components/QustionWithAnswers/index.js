@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Space, Typography } from 'antd';
+import { Button, Typography } from 'antd';
 import './styles.css';
 
 function shuffleAnswers(answers = []) {
@@ -24,10 +24,7 @@ function QustionWithAnswers(props) {
         <div dangerouslySetInnerHTML={{ __html: question }} />
       </Typography.Title>
       
-      <Space
-        direction="vertical"
-        style={{ width: '100%', marginTop: 'auto' }}
-      >
+      <div className="qustion-with-answers__buttons-wrap">
         {
           answers.map(answer => <Button 
             key={answer}
@@ -35,12 +32,13 @@ function QustionWithAnswers(props) {
             type="primary" 
             shape="round"
             size="large"
+            className="qustion-with-answers__buttons"
             onClick={() => { props.onAnswerClick(answer) }}
           >
             <div dangerouslySetInnerHTML={{ __html: answer }} />
           </Button>)
         }
-      </Space>
+      </div>
     </>
   );
 }

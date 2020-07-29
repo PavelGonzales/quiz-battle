@@ -1,0 +1,18 @@
+.qustion-with-answers__buttons-wrap {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.qustion-with-answers__buttons {
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 640px) {
+  .qustion-with-answers__buttons-wrap {
+    justify-content: space-between;
+  }
+  .qustion-with-answers__buttons {
+    width: calc(50% - 5px);
+  }
+}
