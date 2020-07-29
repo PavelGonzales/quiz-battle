@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Avatar, Space } from 'antd';
 import { Link } from "react-router-dom";
+import { AVATAR_URL_200 } from './../../utils/constants';
 // Styles
 import './styles.css';
 
 function MainScreen() {
-  const avatarSrc = `https://api.adorable.io/avatars/200/${Math.random()}`;
+  const avatarSrc = `${AVATAR_URL_200}${Math.random()}`;
 
   return (
     <Space

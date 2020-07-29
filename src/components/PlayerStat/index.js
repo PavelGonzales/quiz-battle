@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Avatar } from 'antd';
+import { AVATAR_URL_200 } from './../../utils/constants';
 import './styles.css';
 
 function PlayerStat(props) {
   const { rightQuestions = 0, rival } = props;
-  const [avatarSrc] = useState(`https://api.adorable.io/avatars/200/${Math.random()}`)
+  const [avatarSrc] = useState(`${AVATAR_URL_200}${Math.random()}`)
   const classesRightQuestions = ['rightQustions']
 
   if (rival) {
