@@ -61,9 +61,8 @@ function Finishcreen(props) {
   );
 }
 
-export default connect(
-  state => ({
-    players: state.players
-  }),
-  dispatch => ({}),
-)(Finishcreen);
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+export default connect(mapStateToProps)(Finishcreen);

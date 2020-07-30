@@ -52,13 +52,14 @@ function FindScreen(props) {
   );
 }
 
-export default connect(
-  state => ({
-    players: state.players
-  }),
-  dispatch => ({
-    findRival: () => {
-      dispatch(findRival());
-    },
-  }),
-)(FindScreen);
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+const mapDispatchToProps = dispatch => ({
+  findRival: () => {
+    dispatch(findRival());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindScreen);

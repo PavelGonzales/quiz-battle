@@ -31,21 +31,22 @@ function MainScreen(props) {
       </Button>
     </Space>
   );
-}
+};
 
-export default connect(
-  state => ({
-    players: state.players
-  }),
-  dispatch => ({
-    addPlayer: avatar => {
-      dispatch({
-        type: 'ADD_PLAYER',
-        payload: {
-          avatar,
-          rightAnswers: 0
-        }
-      })
-    }
-  }),
-)(MainScreen);
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+const mapDispatchToProps = dispatch => ({
+  addPlayer: avatar => {
+    dispatch({
+      type: 'ADD_PLAYER',
+      payload: {
+        avatar,
+        rightAnswers: 0,
+      },
+    });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

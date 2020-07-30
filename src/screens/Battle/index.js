@@ -96,26 +96,27 @@ function BattleScreen(props) {
   );
 }
 
-export default connect(
-  state => ({
-    players: state.players
-  }),
-  dispatch => ({
-    setRightAnswerToPlayer: count => {
-      dispatch({
-        type: 'SET_RIGHT_ANSWER_TO_PLAYER',
-        payload: {
-          count,
-        },
-      })
-    },
-    setRightAnswerToRival: count => {
-      dispatch({
-        type: 'SET_RIGHT_ANSWER_TO_RIVAL',
-        payload: {
-          count,
-        },
-      })
-    }
-  }),
-)(BattleScreen);
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setRightAnswerToPlayer: count => {
+    dispatch({
+      type: 'SET_RIGHT_ANSWER_TO_PLAYER',
+      payload: {
+        count,
+      },
+    })
+  },
+  setRightAnswerToRival: count => {
+    dispatch({
+      type: 'SET_RIGHT_ANSWER_TO_RIVAL',
+      payload: {
+        count,
+      },
+    })
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BattleScreen);
