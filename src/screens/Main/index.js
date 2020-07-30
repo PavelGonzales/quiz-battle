@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 import { AVATAR_URL_200 } from './../../utils/constants';
 // Styles
 import './styles.css';
+import { connect } from 'react-redux';
 
-function MainScreen() {
-  const avatarSrc = `${AVATAR_URL_200}${Math.random()}`;
+function MainScreen(props) {
+  const { players, addPlayer } = props;
+  const avatar = players && players.player && players.player.avatar
+
+  if (!avatar) {
+    addPlayer(`${AVATAR_URL_200}${Math.floor(Math.random() * Math.floor(70))}`)
+  }
 
   return (
     <Space
@@ -16,7 +22,7 @@ function MainScreen() {
       size={40}
     >
       <Avatar
-        src={avatarSrc}
+        src={avatar}
         size={100}
       />
 
@@ -25,6 +31,22 @@ function MainScreen() {
       </Button>
     </Space>
   );
-}
+};
 
-export default MainScreen;
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+const mapDispatchToProps = dispatch => ({
+  addPlayer: avatar => {
+    dispatch({
+      type: 'ADD_PLAYER',
+      payload: {
+        avatar,
+        rightAnswers: 0,
+      },
+    });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

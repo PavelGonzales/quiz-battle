@@ -9,30 +9,34 @@ import mock from './../../mocks/quiz';
 import Timer from './../../components/Timer';
 import QustionWithAnswers from './../../components/QustionWithAnswers';
 import PlayerStat from './../../components/PlayerStat';
+import { connect } from 'react-redux';
 
-function BattleScreen() {
+function BattleScreen(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [rightQuestions, setRightQuestions] = useState(0);
-  const [wrongQuestions, setWrongQuestions] = useState(0);
   const [isRedirect, setIsRedirect] = useState(false);
   const [percent, setPercent] = useState(50);
   const currentQuestion = mock.results[currentQuestionIndex] || {};
 
+  const { players, setRightAnswerToPlayer, setRightAnswerToRival } = props;
+  const { player = {}, rival = {} } = players;
+  const playerAnswers = player.rightAnswers || 0;
+  const rivalAnswers = rival.rightAnswers || 0;
+
   const onAnswerClick = () => {
     return (answer) => {
       if (answer === currentQuestion.correct_answer) {
-        setRightQuestions(rightQuestions + 1);
+        setRightAnswerToPlayer(playerAnswers + 1);
       } else {
-        setWrongQuestions(wrongQuestions + Math.round(Math.random()));
+        setRightAnswerToRival(rivalAnswers + Math.round(Math.random()));
       }
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   }
 
-  const calculatePercent = ({ rightQuestions, wrongQuestions }) => {
-    const isBothParameterZero = rightQuestions === 0 && wrongQuestions === 0;
-    const right = isNaN(rightQuestions) || isBothParameterZero ? 1 : rightQuestions;
-    const wrong = isNaN(wrongQuestions) || isBothParameterZero ? 1 : wrongQuestions;
+  const calculatePercent = ({ playerAnswers, rivalAnswers }) => {
+    const isBothParameterZero = playerAnswers === 0 && rivalAnswers === 0;
+    const right = isNaN(playerAnswers) || isBothParameterZero ? 1 : playerAnswers;
+    const wrong = isNaN(rivalAnswers) || isBothParameterZero ? 1 : rivalAnswers;
 
     const sum = wrong + right;
     const res = right * 100 / sum;
@@ -41,10 +45,10 @@ function BattleScreen() {
   }
 
   useEffect(() => {
-    const calcPerc = calculatePercent({ rightQuestions, wrongQuestions })
+    const calcPerc = calculatePercent({ playerAnswers, rivalAnswers })
 
     setPercent(calcPerc);
-  }, [rightQuestions, wrongQuestions])
+  }, [playerAnswers, rivalAnswers])
 
   useEffect(() => {
     if (currentQuestionIndex === mock.results.length - 1) {
@@ -71,8 +75,15 @@ function BattleScreen() {
       <Space
         style={{ justifyContent: 'space-around' }}
       >
-        <PlayerStat rightQuestions={rightQuestions} />
-        <PlayerStat rival rightQuestions={wrongQuestions} />
+        <PlayerStat
+          avatar={player.avatar}
+          rightAnswers={playerAnswers}
+        />
+        <PlayerStat
+          rival
+          avatar={rival.avatar}
+          rightAnswers={rivalAnswers}
+        />
       </Space>
       
       <QustionWithAnswers
@@ -85,4 +96,27 @@ function BattleScreen() {
   );
 }
 
-export default BattleScreen;
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setRightAnswerToPlayer: count => {
+    dispatch({
+      type: 'SET_RIGHT_ANSWER_TO_PLAYER',
+      payload: {
+        count,
+      },
+    })
+  },
+  setRightAnswerToRival: count => {
+    dispatch({
+      type: 'SET_RIGHT_ANSWER_TO_RIVAL',
+      payload: {
+        count,
+      },
+    })
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BattleScreen);

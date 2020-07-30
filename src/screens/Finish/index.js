@@ -2,16 +2,16 @@ import React from 'react';
 import { Button, Avatar } from 'antd';
 import { Typography } from 'antd';
 import { Link } from "react-router-dom";
-import { AVATAR_URL_200 } from './../../utils/constants';
 // Styles
 import './styles.css';
+import { connect } from 'react-redux';
 
 const { Title } = Typography;
 
-function Finishcreen() {
-  const avatarSrc = `${AVATAR_URL_200}${Math.random()}`;
-  const isWin = true;
-  const title = isWin ? 'Win!' : 'Lose!';
+function Finishcreen(props) {
+  const { players } = props;
+  const { player = {}, rival = {} } = players;
+  const title = player.rightAnswers > rival.rightAnswers ? 'Win!' : 'Lose!';
 
   return (
     <div
@@ -29,25 +29,25 @@ function Finishcreen() {
 
       <div className="finish-screen__player-info">
         <Avatar
-          src={avatarSrc}
+          src={player.avatar}
           size={75}
           className="player-info__avatar"
         />
         <div className="player-info__stats">
-          <div className="">Right answers: { 88 }</div>
-          <div className="">Wrong answers: { 14 }</div>
+          <div className="">Right answers: { player.rightAnswers }</div>
+          <div className="">Wrong answers: { player.wrongAnswers }</div>
         </div>
       </div>
 
       <div className="finish-screen__player-info">
         <Avatar
-          src={avatarSrc}
+          src={rival.avatar}
           size={75}
           className="player-info__avatar"
         />
         <div className="player-info__stats">
-          <div className="">Right answers: { 14 }</div>
-          <div className="">Wrong answers: { 88 }</div>
+          <div className="">Right answers: { rival.rightAnswers }</div>
+          <div className="">Wrong answers: { rival.wrongAnswers }</div>
         </div>
       </div>
   
@@ -61,4 +61,8 @@ function Finishcreen() {
   );
 }
 
-export default Finishcreen;
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+export default connect(mapStateToProps)(Finishcreen);

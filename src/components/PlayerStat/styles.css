@@ -1,4 +1,4 @@
-.rightQustions {
+.rightAnswers {
   font-weight: 700;
   font-size: 25px;
   background-color: var(--accent-color);
@@ -14,7 +14,7 @@
   position: relative;
 }
 
-.rightQustions_rival {
+.rightAnswers_rival {
   background-color: var(--error-color);
   margin-right: initial;
   margin-left: -60px;

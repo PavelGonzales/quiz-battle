@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Avatar, Space } from 'antd';
 import { Link, Redirect } from "react-router-dom";
-import { AVATAR_URL_100, AVATAR_URL_200 } from './../../utils/constants';
+import { AVATAR_URL_100 } from './../../utils/constants';
 // Styles
 import './styles.css';
+import { connect } from 'react-redux';
+import { findRival } from './../../actions/players';
 
-function FindScreen() {
-  const [isRedirect, setIsRedirect] = useState(false);
-  const avatarSrc = `${AVATAR_URL_200}${Math.random()}`;
+function FindScreen(props) {
+  const { players, findRival } = props;
+  const { player = {}, rival = {} } = players;
   const rivalAvatars = [];
 
   for (let i = 0; i < 10; i++) {
-    rivalAvatars.push(`${AVATAR_URL_100}${i}`);
+    rivalAvatars[i] =  `${AVATAR_URL_100}${i}`;
+    rivalAvatars[i + 10] =  `${AVATAR_URL_100}${i}`;
   }
 
-  rivalAvatars.push(...rivalAvatars);
-
-  setTimeout(() => {
-    setIsRedirect(true);
-  }, 3000);
-
-  if (isRedirect) {
+  if (rival.avatar) {
     return <Redirect to='/battle' />;
+  } else {
+    findRival();
   }
 
   return (
@@ -32,7 +31,7 @@ function FindScreen() {
       size={40}
     >
       <Avatar
-        src={avatarSrc}
+        src={player.avatar}
         size={100}
       />
 
@@ -53,4 +52,14 @@ function FindScreen() {
   );
 }
 
-export default FindScreen;
+const mapStateToProps = ({ players }) => ({
+  players,
+});
+
+const mapDispatchToProps = dispatch => ({
+  findRival: () => {
+    dispatch(findRival());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindScreen);
