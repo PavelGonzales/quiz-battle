@@ -24,7 +24,7 @@
 
 .player-info__stats {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
   font-size: 18px;
 }
