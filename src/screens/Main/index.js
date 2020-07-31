@@ -3,7 +3,7 @@ import { Button, Avatar, Space } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { AVATAR_URL_200 } from './../../utils/constants';
-import { propPlayers } from './../utils/propValidation';
+import { propPlayers } from './../../utils/propsValidation';
 // Styles
 import './styles.css';
 

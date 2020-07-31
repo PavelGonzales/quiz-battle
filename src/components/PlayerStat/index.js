@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from 'antd';
-import { propStat } from './../utils/propValidation';
+import { propStat } from './../../utils/propsValidation';
 import './styles.css';
 
 function PlayerStat(props) {

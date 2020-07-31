@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Typography } from 'antd';
-import { propQuestions } from './../utils/propValidation';
+import { propQuestions } from './../../utils/propsValidation';
 import './styles.css';
 
 function shuffleAnswers(answers = []) {

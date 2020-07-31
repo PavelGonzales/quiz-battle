@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Progress, Space } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { propPlayers } from './../utils/propValidation';
+import { propPlayers } from './../../utils/propsValidation';
 // Styles
 import './styles.css';
 // Mocks

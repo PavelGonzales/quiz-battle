@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Avatar, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { propPlayers } from './../utils/propValidation';
+import { propPlayers } from './../../utils/propsValidation';
 // Styles
 import './styles.css';
 
