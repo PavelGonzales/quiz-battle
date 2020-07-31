@@ -1,15 +1,16 @@
 import React from 'react';
 import { Avatar } from 'antd';
+import { propStat } from './../utils/propValidation';
 import './styles.css';
 
 function PlayerStat(props) {
   const { rightAnswers = 0, rival, avatar } = props;
-  const classesRightAnswers = ['rightAnswers']
+  const classesRightAnswers = ['rightAnswers'];
 
   if (rival) {
     classesRightAnswers.push('rightAnswers_rival');
   }
-  
+
   return (
     <div className="userContainer">
       <Avatar
@@ -20,5 +21,7 @@ function PlayerStat(props) {
     </div>
   );
 }
+
+PlayerStat.propTypes = propStat;
 
 export default PlayerStat;

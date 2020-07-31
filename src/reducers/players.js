@@ -1,4 +1,4 @@
-const initialState = {}
+const initialState = {};
 
 export default function reducer(state = initialState, action) {
   if (action.type === 'ADD_PLAYER') {
@@ -6,16 +6,16 @@ export default function reducer(state = initialState, action) {
       ...state,
       player: {
         ...action.payload,
-      }
-    }
+      },
+    };
   }
   if (action.type === 'ADD_RIVAL') {
     return {
       ...state,
       rival: {
         ...action.payload,
-      }
-    }
+      },
+    };
   }
   if (action.type === 'SET_RIGHT_ANSWER_TO_PLAYER') {
     return {
@@ -23,8 +23,8 @@ export default function reducer(state = initialState, action) {
       player: {
         ...state.player,
         rightAnswers: action.payload.count,
-      }
-    }
+      },
+    };
   }
   if (action.type === 'SET_RIGHT_ANSWER_TO_RIVAL') {
     return {
@@ -32,8 +32,8 @@ export default function reducer(state = initialState, action) {
       rival: {
         ...state.rival,
         rightAnswers: action.payload.count,
-      }
-    }
+      },
+    };
   }
   return state;
 }

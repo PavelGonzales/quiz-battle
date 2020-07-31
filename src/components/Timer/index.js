@@ -7,7 +7,7 @@ function Timer() {
 
   useEffect(() => {
     let interval = null;
-  
+
     if (timer > 0) {
       interval = setInterval(() => {
         setTimer(seconds => seconds - 1);

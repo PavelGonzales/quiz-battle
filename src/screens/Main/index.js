@@ -1,17 +1,18 @@
 import React from 'react';
 import { Button, Avatar, Space } from 'antd';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { AVATAR_URL_200 } from './../../utils/constants';
+import { propPlayers } from './../utils/propValidation';
 // Styles
 import './styles.css';
-import { connect } from 'react-redux';
 
 function MainScreen(props) {
   const { players, addPlayer } = props;
-  const avatar = players && players.player && players.player.avatar
+  const avatar = players && players.player && players.player.avatar;
 
   if (!avatar) {
-    addPlayer(`${AVATAR_URL_200}${Math.floor(Math.random() * Math.floor(70))}`)
+    addPlayer(`${AVATAR_URL_200}${Math.floor(Math.random() * Math.floor(70))}`);
   }
 
   return (
@@ -32,6 +33,8 @@ function MainScreen(props) {
     </Space>
   );
 };
+
+MainScreen.propTypes = propPlayers;
 
 const mapStateToProps = ({ players }) => ({
   players,

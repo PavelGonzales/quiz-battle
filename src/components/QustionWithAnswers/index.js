@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Typography } from 'antd';
+import { propQuestions } from './../utils/propValidation';
 import './styles.css';
 
 function shuffleAnswers(answers = []) {
@@ -15,7 +16,7 @@ function QustionWithAnswers(props) {
   const answers = shuffleAnswers([...incorrectAnswers, correctAnswer]);
 
   if (!question || answers.length < 1) {
-    return ''
+    return '';
   }
 
   return (
@@ -23,17 +24,19 @@ function QustionWithAnswers(props) {
       <Typography.Title level={4}>
         <div dangerouslySetInnerHTML={{ __html: question }} />
       </Typography.Title>
-      
+
       <div className="qustion-with-answers__buttons-wrap">
         {
-          answers.map(answer => <Button 
+          answers.map(answer => <Button
             key={answer}
             block
-            type="primary" 
+            type="primary"
             shape="round"
             size="large"
             className="qustion-with-answers__buttons"
-            onClick={() => { props.onAnswerClick(answer) }}
+            onClick={() => {
+              props.onAnswerClick(answer);
+            }}
           >
             <div dangerouslySetInnerHTML={{ __html: answer }} />
           </Button>)
@@ -42,5 +45,7 @@ function QustionWithAnswers(props) {
     </>
   );
 }
+
+QustionWithAnswers.propTypes = propQuestions;
 
 export default QustionWithAnswers;

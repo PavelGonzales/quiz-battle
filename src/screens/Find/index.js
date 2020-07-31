@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Avatar, Space } from 'antd';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { AVATAR_URL_100 } from './../../utils/constants';
+import { propPlayers } from './../utils/propValidation';
+import { findRival } from './../../actions/players';
 // Styles
 import './styles.css';
-import { connect } from 'react-redux';
-import { findRival } from './../../actions/players';
 
 function FindScreen(props) {
   const { players, findRival } = props;
@@ -13,8 +14,8 @@ function FindScreen(props) {
   const rivalAvatars = [];
 
   for (let i = 0; i < 10; i++) {
-    rivalAvatars[i] =  `${AVATAR_URL_100}${i}`;
-    rivalAvatars[i + 10] =  `${AVATAR_URL_100}${i}`;
+    rivalAvatars[i] = `${AVATAR_URL_100}${i}`;
+    rivalAvatars[i + 10] = `${AVATAR_URL_100}${i}`;
   }
 
   if (rival.avatar) {
@@ -51,6 +52,8 @@ function FindScreen(props) {
     </Space>
   );
 }
+
+FindScreen.propTypes = propPlayers;
 
 const mapStateToProps = ({ players }) => ({
   players,
