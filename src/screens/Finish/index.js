@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Avatar } from 'antd';
-import { Typography } from 'antd';
-import { Link } from "react-router-dom";
+import { Button, Avatar, Typography } from 'antd';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { propPlayers } from './../utils/propValidation';
 // Styles
 import './styles.css';
-import { connect } from 'react-redux';
 
 const { Title } = Typography;
 
@@ -50,7 +50,7 @@ function Finishcreen(props) {
           <div className="">Wrong answers: { rival.wrongAnswers }</div>
         </div>
       </div>
-  
+
       <Button
         size="large"
         className="finish-screen__button"
@@ -60,6 +60,8 @@ function Finishcreen(props) {
     </div>
   );
 }
+
+Finishcreen.propTypes = propPlayers;
 
 const mapStateToProps = ({ players }) => ({
   players,

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Progress, Space } from 'antd';
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { propPlayers } from './../utils/propValidation';
 // Styles
 import './styles.css';
 // Mocks
@@ -9,7 +11,6 @@ import mock from './../../mocks/quiz';
 import Timer from './../../components/Timer';
 import QustionWithAnswers from './../../components/QustionWithAnswers';
 import PlayerStat from './../../components/PlayerStat';
-import { connect } from 'react-redux';
 
 function BattleScreen(props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -30,8 +31,8 @@ function BattleScreen(props) {
         setRightAnswerToRival(rivalAnswers + Math.round(Math.random()));
       }
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
-  }
+    };
+  };
 
   const calculatePercent = ({ playerAnswers, rivalAnswers }) => {
     const isBothParameterZero = playerAnswers === 0 && rivalAnswers === 0;
@@ -42,19 +43,19 @@ function BattleScreen(props) {
     const res = right * 100 / sum;
 
     return res;
-  }
+  };
 
   useEffect(() => {
-    const calcPerc = calculatePercent({ playerAnswers, rivalAnswers })
+    const calcPerc = calculatePercent({ playerAnswers, rivalAnswers });
 
     setPercent(calcPerc);
-  }, [playerAnswers, rivalAnswers])
+  }, [playerAnswers, rivalAnswers]);
 
   useEffect(() => {
     if (currentQuestionIndex === mock.results.length - 1) {
       setIsRedirect(true);
     }
-  }, [currentQuestionIndex])
+  }, [currentQuestionIndex]);
 
   if (isRedirect) {
     return <Redirect to='/finish' />;
@@ -85,7 +86,7 @@ function BattleScreen(props) {
           rightAnswers={rivalAnswers}
         />
       </Space>
-      
+
       <QustionWithAnswers
         question={currentQuestion.question}
         incorrectAnswers={currentQuestion.incorrect_answers}
@@ -95,6 +96,8 @@ function BattleScreen(props) {
     </>
   );
 }
+
+BattleScreen.propTypes = propPlayers;
 
 const mapStateToProps = ({ players }) => ({
   players,
@@ -107,7 +110,7 @@ const mapDispatchToProps = dispatch => ({
       payload: {
         count,
       },
-    })
+    });
   },
   setRightAnswerToRival: count => {
     dispatch({
@@ -115,7 +118,7 @@ const mapDispatchToProps = dispatch => ({
       payload: {
         count,
       },
-    })
+    });
   },
 });
 
